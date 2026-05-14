@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Cadastro</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f6f9;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+
+       background-image: url(background.jpg);
+       background-size: cover;
+       background-position: center;
+       background-repeat: no-repeat;
+    }
+
+    .container{
+      background:#709ad1;
+      width:100%;
+      max-width:500px;
+      padding:30px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:25px;
+      color:#edd8f0;
+         background-image: url(gif2.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 20px 50px;
+        border-radius: 10px;
+
+    }
+
+    .form-group{
+      margin-bottom:18px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+      color:#444;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      border:1px solid #cec5c5;
+      border-radius:8px;
+      font-size:15px;
+    }
+
+    input:focus{
+      border-color:#007bff;
+      outline:none;
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:8px;
+      background:#83adda;
+      color:#f1ecec;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#0056b3;
+    }
+
+    .mensagem{
+      margin-top:15px;
+      text-align:center;
+      color:green;
+      display:none;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Cadastro</h1>
+
+    <form id="formulario">
+
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" required>
+      </div>
+
+      <div class="form-group">
+        <label>CPF (único)</label>
+        <input 
+          type="text" 
+          id="cpf"
+          maxlength="14"
+          placeholder="000.000.000-00"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Data de nascimento</label>
+        <input type="date" required>
+      </div>
+
+      <div class="form-group">
+        <label>Telefone</label>
+        <input 
+          type="tel"
+          placeholder="(61) 99999-9999"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+          type="email"
+          placeholder="email@exemplo.com"
+          required
+        >
+      </div>
+
+      <button type="submit">Enviar</button>
+
+      <div class="mensagem" id="mensagem">
+        Cadastro enviado com sucesso!
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+
+    const formulario = document.getElementById('formulario');
+    const mensagem = document.getElementById('mensagem');
+
+    // Lista simples para impedir CPF duplicado
+    let cpfs = [];
+
+    formulario.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const cpf = document.getElementById('cpf').value;
+
+      if(cpfs.includes(cpf)){
+        alert('Este CPF já foi cadastrado!');
+        return;
+      }
+
+      cpfs.push(cpf);
+
+      mensagem.style.display = 'block';
+
+      formulario.reset();
+    });
+
+  </script>
+
+</body>
+</html>
